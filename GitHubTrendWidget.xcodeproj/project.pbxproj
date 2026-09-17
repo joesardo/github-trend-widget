@@ -15,6 +15,7 @@
 		A10000000000000000000006 /* TrendsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000008 /* TrendsWidget.swift */; };
 		A10000000000000000000007 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000005 /* GitHubRepository.swift */; };
 		A10000000000000000000008 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000007 /* SharedStore.swift */; };
+		A1000000000000000000000E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000000000000000000006 /* GitHubService.swift */; };
 		A10000000000000000000009 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10000000000000000000000B /* SwiftUI.framework */; };
 		A1000000000000000000000A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10000000000000000000000C /* WidgetKit.framework */; };
 		A1000000000000000000000B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10000000000000000000000B /* SwiftUI.framework */; };
@@ -258,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000006 /* TrendsWidget.swift in Sources */,
+				A1000000000000000000000E /* GitHubService.swift in Sources */,
 				A10000000000000000000007 /* GitHubRepository.swift in Sources */,
 				A10000000000000000000008 /* SharedStore.swift in Sources */,
 			);
@@ -279,7 +281,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = GitHubTrends/GitHubTrendWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JKJGC38VXU;
@@ -303,7 +304,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = GitHubTrends/GitHubTrendWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JKJGC38VXU;
@@ -328,7 +328,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = TrendsWidget/TrendsWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JKJGC38VXU;
@@ -355,7 +354,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = TrendsWidget/TrendsWidget.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JKJGC38VXU;

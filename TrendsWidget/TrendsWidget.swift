@@ -13,19 +13,44 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TrendEntry) -> Void) {
-        completion(load())
+        if context.isPreview {
+            completion(loadCached())
+            return
+        }
+
+        Task {
+            completion(await loadEntry())
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<TrendEntry>) -> Void) {
-        let entry = load()
-        let next = Calendar.current.date(byAdding: .hour, value: 2, to: .now)!
-        completion(Timeline(entries: [entry], policy: .after(next)))
+        Task {
+            let entry = await loadEntry()
+            let next = Calendar.current.date(byAdding: .hour, value: 2, to: .now)!
+            completion(Timeline(entries: [entry], policy: .after(next)))
+        }
     }
 
-    private func load() -> TrendEntry {
+    private func loadCached() -> TrendEntry {
         TrendEntry(date: .now,
-                   query: SharedStore.defaults.string(forKey: SharedStore.queryKey) ?? "SwiftUI",
+                   query: currentQuery,
                    repositories: SharedStore.loadRepositories())
+    }
+
+    private var currentQuery: String {
+        let storedQuery = SharedStore.defaults.string(forKey: SharedStore.queryKey)
+        let trimmedQuery = storedQuery?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return trimmedQuery.isEmpty ? "SwiftUI" : trimmedQuery
+    }
+
+    private func loadEntry() async -> TrendEntry {
+        do {
+            let repositories = try await GitHubService.shared.search(query: currentQuery)
+            SharedStore.saveRepositories(repositories, reloadWidgets: false)
+            return TrendEntry(date: .now, query: currentQuery, repositories: repositories)
+        } catch {
+            return loadCached()
+        }
     }
 }
 
@@ -36,7 +61,7 @@ struct GitHubTrendWidgetView: View {
         VStack(alignment: .leading, spacing: 7) {
             HStack { Text("🔥"); Text(entry.query).font(.headline).lineLimit(1); Spacer() }
             if entry.repositories.isEmpty {
-                Text("Open GitHub Trend and refresh to load repositories.")
+                Text("No repositories available right now.")
                     .font(.caption).foregroundStyle(.secondary)
             } else {
                 ForEach(entry.repositories.prefix(4)) { repo in

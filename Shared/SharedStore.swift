@@ -15,9 +15,11 @@ enum SharedStore {
         return (try? JSONDecoder().decode([GitHubRepository].self, from: data)) ?? []
     }
 
-    static func saveRepositories(_ repositories: [GitHubRepository]) {
+    static func saveRepositories(_ repositories: [GitHubRepository], reloadWidgets: Bool = true) {
         guard let data = try? JSONEncoder().encode(repositories) else { return }
         defaults.set(data, forKey: repositoriesKey)
-        WidgetCenter.shared.reloadAllTimelines()
+        if reloadWidgets {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 }
