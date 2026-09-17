@@ -279,9 +279,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = GitHubTrends/GitHubTrendWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JKJGC38VXU;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GitHubTrends/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,9 +303,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = GitHubTrends/GitHubTrendWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JKJGC38VXU;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = GitHubTrends/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -326,9 +328,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = TrendsWidget/TrendsWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JKJGC38VXU;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TrendsWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -352,9 +355,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = TrendsWidget/TrendsWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JKJGC38VXU;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = TrendsWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
