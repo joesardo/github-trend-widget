@@ -11,6 +11,6 @@
 <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
 <key>NSExtension</key><dict>
 <key>NSExtensionPointIdentifier</key><string>com.apple.widgetkit-extension</string>
-<key>NSExtensionPrincipalClass</key><string>$(PRODUCT_MODULE_NAME).GitHubTrendWidgetWidget</string>
+<key>NSExtensionPrincipalClass</key><string>$(PRODUCT_MODULE_NAME).TrendsWidgetExtension</string>
 </dict>
 </dict></plist>

@@ -63,8 +63,9 @@ struct GitHubTrendWidgetView: View {
 }
 
 @main
-struct GitHubTrendWidgetWidget: Widget {
-    let kind = "GitHubTrendWidgetWidget"
+struct TrendsWidgetExtension: Widget {
+    let kind = "TrendsWidget"
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             GitHubTrendWidgetView(entry: entry)
