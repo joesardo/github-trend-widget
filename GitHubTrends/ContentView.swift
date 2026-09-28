@@ -15,7 +15,7 @@ struct ContentView: View {
             HStack {
                 TextField("Search GitHub", text: $searchQuery).textFieldStyle(.roundedBorder)
                 Button(loading ? "Loading…" : "Refresh") { Task { await refresh() } }
-                    .disabled(loading || searchQuery.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                    .disabled(loading || searchQuery.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
             }
             if let error { Text(error).foregroundStyle(.red) }
             List(repositories) { repo in
