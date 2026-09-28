@@ -13,44 +13,19 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TrendEntry) -> Void) {
-        if context.isPreview {
-            completion(loadCached())
-            return
-        }
-
-        Task {
-            completion(await loadEntry())
-        }
+        completion(loadCached())
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<TrendEntry>) -> Void) {
-        Task {
-            let entry = await loadEntry()
-            let next = Calendar.current.date(byAdding: .hour, value: 2, to: .now)!
-            completion(Timeline(entries: [entry], policy: .after(next)))
-        }
+        let entry = loadCached()
+        let next = Calendar.current.date(byAdding: .hour, value: 2, to: .now)!
+        completion(Timeline(entries: [entry], policy: .after(next)))
     }
 
     private func loadCached() -> TrendEntry {
         TrendEntry(date: .now,
-                   query: currentQuery,
+                   query: SharedStore.loadQuery(),
                    repositories: SharedStore.loadRepositories())
-    }
-
-    private var currentQuery: String {
-        let storedQuery = SharedStore.defaults.string(forKey: SharedStore.queryKey)
-        let trimmedQuery = storedQuery?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return trimmedQuery.isEmpty ? "SwiftUI" : trimmedQuery
-    }
-
-    private func loadEntry() async -> TrendEntry {
-        do {
-            let repositories = try await GitHubService.shared.search(query: currentQuery)
-            SharedStore.saveRepositories(repositories, reloadWidgets: false)
-            return TrendEntry(date: .now, query: currentQuery, repositories: repositories)
-        } catch {
-            return loadCached()
-        }
     }
 }
 

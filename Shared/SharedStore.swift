@@ -15,6 +15,16 @@ enum SharedStore {
         return (try? JSONDecoder().decode([GitHubRepository].self, from: data)) ?? []
     }
 
+    static func loadQuery() -> String {
+        let storedQuery = defaults.string(forKey: queryKey)
+        let trimmedQuery = storedQuery?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return trimmedQuery.isEmpty ? "SwiftUI" : trimmedQuery
+    }
+
+    static func saveQuery(_ query: String) {
+        defaults.set(query, forKey: queryKey)
+    }
+
     static func saveRepositories(_ repositories: [GitHubRepository], reloadWidgets: Bool = true) {
         guard let data = try? JSONEncoder().encode(repositories) else { return }
         defaults.set(data, forKey: repositoriesKey)

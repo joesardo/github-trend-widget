@@ -51,7 +51,7 @@ struct ContentView: View {
         do {
             let repos = try await GitHubService.shared.search(query: query)
             repositories = repos
-            SharedStore.defaults.set(query, forKey: SharedStore.queryKey)
+            SharedStore.saveQuery(query)
             SharedStore.saveRepositories(repos)
         } catch {
             self.error = "GitHub request failed: \(error.localizedDescription)"
