@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 struct ContentView: View {
-    @AppStorage("searchQuery", store: UserDefaults(suiteName: SharedStore.suiteName))
+    @AppStorage("searchQuery")
     private var searchQuery = "SwiftUI"
     @State private var repositories = SharedStore.loadRepositories()
     @State private var loading = false
@@ -15,7 +15,7 @@ struct ContentView: View {
             HStack {
                 TextField("Search GitHub", text: $searchQuery).textFieldStyle(.roundedBorder)
                 Button(loading ? "Loading…" : "Refresh") { Task { await refresh() } }
-                    .disabled(loading || searchQuery.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(loading || searchQuery.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             }
             if let error { Text(error).foregroundStyle(.red) }
             List(repositories) { repo in
@@ -45,7 +45,7 @@ struct ContentView: View {
     }
 
     private func refresh() async {
-        let query = searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        let query = searchQuery.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         guard !query.isEmpty else { return }
         loading = true; error = nil
         SharedStore.saveQuery(query)
