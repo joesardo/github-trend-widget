@@ -18,8 +18,8 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<TrendEntry>) -> Void) {
         let entry = loadCached()
-        let next = Calendar.current.date(byAdding: .hour, value: 2, to: .now)!
-        completion(Timeline(entries: [entry], policy: .after(next)))
+        // Change .never to .atEnd to allow sequential manual reloads to pass cleanly
+        completion(Timeline(entries: [entry], policy: .atEnd)) 
     }
 
     private func loadCached() -> TrendEntry {

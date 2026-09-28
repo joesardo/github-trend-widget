@@ -48,10 +48,10 @@ struct ContentView: View {
         let query = searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return }
         loading = true; error = nil
+        SharedStore.saveQuery(query)
         do {
             let repos = try await GitHubService.shared.search(query: query)
             repositories = repos
-            SharedStore.saveQuery(query)
             SharedStore.saveRepositories(repos)
         } catch {
             self.error = "GitHub request failed: \(error.localizedDescription)"
